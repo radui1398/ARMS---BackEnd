@@ -1,6 +1,7 @@
 from twitterscraper.query import query_user_info
 from twitterscraper import query_tweets
 import datetime as dt
+
 global twitter_user_info
 
 
@@ -27,12 +28,8 @@ def get_user_info(twitter_user):
     return twitter_user_data
 
 
-def load_tweets(d, m, y):
-    flat_tweets = query_tweets("Romania coronavirus", 10, dt.date(y, m, d))
-
-    tweets = []
-
-    for tweet in flat_tweets:
+def load_in_tweets(tweets, data):
+    for tweet in data:
         tweets_obj = {
             'id': tweet.tweet_id,
             'text': tweet.text,
@@ -42,5 +39,17 @@ def load_tweets(d, m, y):
             'time': tweet.timestamp
         }
         tweets.append(tweets_obj)
+
+
+def load_tweets(d, m, y, country):
+    flat_tweets1 = query_tweets(country + " coronavirus", 10, dt.date(y, m, d))
+    flat_tweets2 = query_tweets(country + " covid", 10, dt.date(y, m, d))
+    flat_tweets3 = query_tweets(country + " covid19", 10, dt.date(y, m, d))
+
+    tweets = []
+
+    load_in_tweets(tweets, flat_tweets1)
+    load_in_tweets(tweets, flat_tweets2)
+    load_in_tweets(tweets, flat_tweets3)
 
     return tweets
