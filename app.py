@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from flask import Flask, escape, request, jsonify, Response
 
 from scrapper import load_tweets
@@ -6,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
-def home():
+def default():
     try:
         d = int(request.args.get('d'))
         m = int(request.args.get('m'))
@@ -18,12 +20,33 @@ def home():
         if len(tweets) == 0:
             return Response({'Nothing found.'}, status=404, mimetype='application/json')
 
-        data = {'data': tweets}
+        data = {'count': len(tweets), 'data': tweets}
 
         return data
     except Exception as e:
         print(e)
         return Response("Invalid request.", status=400, mimetype='application/json')
 
+@app.route('/today', methods=['GET'])
+def today():
+    try:
+        now = datetime.now() - timedelta(days=1)
+        country = request.args.get('country')
+        limit = request.args.get('limit')
+
+        if limit:
+            tweets = load_tweets(now.day, now.month, now.year, country, int(limit))
+        else:
+            tweets = load_tweets(now.day, now.month, now.year, country)
+
+        if len(tweets) == 0:
+            return Response({'Nothing found.'}, status=404, mimetype='application/json')
+
+        data = {'count': len(tweets), 'data': tweets}
+
+        return data
+    except Exception as e:
+        print(e)
+        return Response("Invalid request.", status=400, mimetype='application/json')
 
 app.run()

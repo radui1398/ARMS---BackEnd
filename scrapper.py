@@ -41,10 +41,10 @@ def load_in_tweets(tweets, data):
         tweets.append(tweets_obj)
 
 
-def load_tweets(d, m, y, country):
-    flat_tweets1 = query_tweets(country + " coronavirus", 10, dt.date(y, m, d))
-    flat_tweets2 = query_tweets(country + " covid", 10, dt.date(y, m, d))
-    flat_tweets3 = query_tweets(country + " covid19", 10, dt.date(y, m, d))
+def load_tweets(d, m, y, country, limit=10):
+    flat_tweets1 = query_tweets(country + " coronavirus", limit, dt.date(y, m, d))
+    flat_tweets2 = query_tweets(country + " covid", limit, dt.date(y, m, d))
+    flat_tweets3 = query_tweets(country + " covid19", limit, dt.date(y, m, d))
 
     tweets = []
 
