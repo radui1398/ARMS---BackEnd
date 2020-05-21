@@ -3,7 +3,7 @@
 Just run app.py.
 
 ### GET TWEETS BY DATE/COUNTRY
-http://127.0.0.1:5000/?d=20&y=2020&m=5&country=[country]
+https://arsm-backend.herokuapp.com/?d=21&y=2020&m=5&country=Romania
 
     QParams: 
     d = Day
@@ -30,7 +30,7 @@ Can fail with 400/404/500.
 
 
 ### GET TWEETS BY COUNTRY FOR TODAY (-1 ACTUALLY)
-http://127.0.0.1:5000/today?country=[country]
+https://arsm-backend.herokuapp.com/today?country=Romania
 
     QParams: 
     country = Country
