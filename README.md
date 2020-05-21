@@ -22,6 +22,9 @@ https://arsm-backend.herokuapp.com/?d=21&y=2020&m=5&country=Romania
         html,
         text,
         url,
+        has_media,
+        images,
+        video,
         user,
         screen_name,
         time
