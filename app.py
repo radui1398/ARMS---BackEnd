@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
 
 from flask import Flask, escape, request, jsonify, Response
+from flask_cors import CORS
 
 from scrapper import load_tweets
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/', methods=['GET'])
