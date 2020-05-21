@@ -23,6 +23,7 @@ https://arsm-backend.herokuapp.com/?d=21&y=2020&m=5&country=Romania
         text,
         url,
         user,
+        screen_name,
         time
     }
     

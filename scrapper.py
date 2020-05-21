@@ -36,6 +36,7 @@ def load_in_tweets(tweets, data):
             'html': tweet.text_html,
             'url': tweet.tweet_url,
             'user': tweet.username,
+            'screen_name': tweet.screen_name,
             'time': tweet.timestamp
         }
         tweets.append(tweets_obj)
